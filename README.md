@@ -9,9 +9,18 @@ AngleComparison Layer
 
 The AngleComparison layer is a custom layer for comparing two outputs of a 1D CNN layer in TensorFlow and PyTorch. The layer works by passing an input tensor through two different 1D CNN layers with the same filter size and kernel size. The output of each 1D CNN layer is then compared using a dot product computed with respect to the channel dimension. The dot product is normalized by the product of the L2 norms of the two 1D CNN layers. The final output is a tensor that concatenates the angle tensor with the input tensor.
 
+![image](https://user-images.githubusercontent.com/37775482/221893713-5c2d121a-3dd6-4f14-9806-d3e80d1d5877.png)
+Figure 1. Analogy to the angle calculation using dot products. 
+
 The AngleComparison layer is an analogy for angle calculation using cosine formula using inner product. It is used in the case when we use X, Y, Z coordinates and want to include information between the features, but we don't want to do it explicitly. So we calculate them for the higher level of abstraction.
 
 The `AngleComparison` layer is useful for applications where we want to compare two outputs of a 1D CNN layer and extract a measure of similarity between them. This layer can be used in many different applications, such as natural language processing, speech processing, and time series analysis.
+
+# Similarity to self-Attention
+Some people can find it similar to self attention. The are several major differences:
+* The result of the comparison is added to the features, not used for weighting some sort of input
+* The dot product is normalized with respect to the L2 norm, so that the size of the vectors doesn't affect its results
+* The output is not weighted with SoftMax function to obtain a probability distribution 
 
 # Example Usage
 
